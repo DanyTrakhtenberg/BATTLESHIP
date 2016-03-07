@@ -1,0 +1,136 @@
+
+body {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/*http://stackoverflow.com/questions/29307971/css-grid-of-squares-with-flexbox*/
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    justify-content: space-around;
+    /*flex-width: 500px;*/
+    line-height:15px;
+}
+
+.flex-item {
+    background: gray;
+    margin: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.5em;
+    text-align: center;
+    flex: 1 0 auto;
+    height:40px;
+    border: 2px solid gray;
+}
+
+.flex-item:before {
+    content:'';
+    float:left;
+    padding-top:100%;
+}
+
+.flex-item:hover {
+    border: 2px solid black;
+}
+
+.content {
+    width: 100%;
+    /*height: 400px;*/
+}
+
+.hud {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+.hud-item {
+    width: 150px;
+    display: inline-block;
+    float: left;
+    margin: 5px;
+}
+
+.turn-title {
+    font-size: 1.5em;
+}
+
+.buttons {
+    padding-top: 8px;
+}
+
+.selected {
+    background-color: blue;
+}
+
+.missed {
+    background-color: red;
+}
+
+.hit {
+    background-color: green;
+}
+
+.main {
+    width: 100%;
+    margin: 0;
+}
+
+.footer {
+    margin: 8px;
+    text-align: center;
+    font-size: 2em;
+    text-decoration: underline;
+}
+
+/*http://stackoverflow.com/revisions/16344389/7*/
+/*Blinking divs.*/
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@media (min-width: 768px) {
+    .main {
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;        
+    }
+}
