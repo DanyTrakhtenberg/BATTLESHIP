@@ -33,8 +33,8 @@ class Ship {
 
 			// If ship has no coords left, it is sunk!
 			if (this.mCoordinates.length === 0){
-				console.log('You sunk my ' + this.mName + '!');
-				this.mSunk = true;				
+				this.mSunk = true;								
+				App.component.$dispatch('sunk', this.mName);
 			}
 
 			return true;
@@ -52,6 +52,10 @@ class Ship {
 
 	public get Coordinates():Array<Coordinate> {
 		return this.mCoordinates;
+	}
+
+	public get Name():string {
+		return this.mName;
 	}
 
 	public Place(coordMap:any) {

@@ -1,35 +1,26 @@
 class Content {
-	public static props = ['games','selected', 'phase', 'hits', 'misses','turn'];
+	public static props = ['msg','kills','games','selected', 'phase', 'hits', 'misses','turn'];
 
 	public static template =
 	'<div class="main">' +
-	'<hud :turn="turn" :phase="phase" :selected="selected" :games="games"></hud>' +
+	'<hud v-if="main || waiting" :kills="kills" :msg="msg" :turn="turn" :phase="phase" :selected="selected" :games="games"></hud>' +
 	'<div class="content">' +
-	'<board :phase="phase" :hits="hits" :misses="misses" :selected="selected"></board>' +
+	'<board v-if="main || waiting" :phase="phase" :hits="hits" :misses="misses" :selected="selected"></board>' +
+	'<startscreen v-if="start"></startscreen>' +
 	'</div>' +
-	'<div class="footer">BATTLESHIP</div>' +
-	'</div>';
+	'</div>' +	
+	'<div class="footer">BATTLESHIP</div>';
 
 
-	public static watch:any = {
-		hits: function(val, old) {
-			console.log('watching hits: ');
-			console.log(val);
-			console.log(old);			
+	public static computed:any = {
+		main: function() {
+			return this.phase === GamePhase.MAIN;
 		},
-		misses: function(val, old) {
-			console.log('watching misses: ');
-			console.log(val);
-			console.log(old);
-		}
-	}
-
-	public static computed = {
-		players: function() {
-
-
-			console.log(this.games);
-			return this.games.Players;
+		start: function() {
+			return this.phase === GamePhase.START;
+		},
+		waiting: function() {
+			return this.phase === GamePhase.WAITING;
 		}
 	}
 
@@ -43,7 +34,7 @@ class Content {
 		template: Content.template,
 		props: Content.props,
 		data: Content.data,
-		watch: Content.watch
+		computed: Content.computed
 	};
 }
 

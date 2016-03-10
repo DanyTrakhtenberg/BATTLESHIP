@@ -18,8 +18,6 @@ interface Coordinate {
 	y: number
 }
 
-
-
 class Game {
 	public static GRID_SIZE:number = 10;
 	private mPlayers: Array<Player> = [];
@@ -46,13 +44,6 @@ class Game {
 	}
 
 	public Load():void {
-    	// Do this later if there's time. *serialization*		
-		// if (localStorage.getItem('battleship-game') === null)
-		// 	return;
-		// var jsonObj = JSON.parse(localStorage.getItem('battleship-game'));
-		// 
-		// 
-		// 
 		var player1 = new Player();
 		this.mPlayers.push(player1);
 
@@ -78,7 +69,7 @@ class Game {
 		this.mPhase = phase;
 	}	
 
-	public Fire(coord:Coordinate){
+	public Fire(coord:Coordinate):boolean{
 		if (coord.x === -1 && coord.y === -1)
 			return;
 
@@ -86,15 +77,10 @@ class Game {
 			this.mHits[this.mCurrentTurn].push(coord);
 		}
 		else {
-			console.log("pushing this miss into array: ");
-			console.log(coord);
 			this.mMisses[this.mCurrentTurn].push(coord);			
 		}
 		if (this.OtherPlayer().IsDead())
  			this.EndGame();
- 		// else
- 		// 	this.NextTurn();
-		// Check if projectile hit other player's ship!
 	}
 
 	private EndGame(): void {
@@ -125,7 +111,7 @@ class Game {
 		});
 	}
 
-	private OtherPlayer():Player {
+	public OtherPlayer():Player {
 		return this.mCurrentTurn === 0 ? this.mPlayers[1] : this.mPlayers[0];
 	}
 

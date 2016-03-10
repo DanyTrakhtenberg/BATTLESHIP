@@ -8,9 +8,11 @@ class Player {
 	}
 
 	public IsDead():boolean {
-		if (this.mShips.length === 0)
-			return true;
-		return false;
+		if (this.mShips.some(ship => {
+			return !ship.Sunk;
+		}))
+			return false;
+		return true;
 	}
 
 	public ReceiveProjectile(coord:Coordinate):boolean {
@@ -19,13 +21,6 @@ class Player {
 			return ship.HitTest(coord);
 		}))
 			hit = true;
-
-
-		// Remove ships from collection if they have
-		// been sunk
-		this.mShips = this.mShips.filter(ship => {
-			return !ship.Sunk;
-		});
 
 		if (hit)
 			return true;

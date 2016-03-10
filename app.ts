@@ -16,6 +16,7 @@
 ///<reference path="components/row.ts" />
 ///<reference path="components/tile.ts" />
 ///<reference path="components/hud.ts" />
+///<reference path="components/startscreen.ts" />
 
 class App {
 	private mGame: Game;
@@ -28,9 +29,11 @@ class App {
 		App.component = new Vue({
 			el: "#entry",
 			data: App.data,
-			template: '<content :turn="turn" :phase="phase" :hits="hits" :misses="misses" :selected="selected" :games="games"></content>',
+			template: '<content :kills="kills" :msg="msg" :turn="turn" :phase="phase" :hits="hits" :misses="misses" :selected="selected" :games="games"></content>',
 		});
 
+
+		// Handle events here, waterfall changes downward
 		App.component.$on('selected', function(payload) {
 			this.selected.x = payload.x;
 			this.selected.y = payload.y;
@@ -42,23 +45,52 @@ class App {
 				return;
 			var result = self.mCurrentGame.Fire(payload);
 			if(self.mCurrentGame.Phase === GamePhase.END) {
+				this.phase = GamePhase.END;
 				// end game here.
 				return;
 			} 
 			this.hits = self.mGame.Hits[currentTurn];
 			this.misses = self.mGame.Misses[currentTurn];
+			this.kills = self.mGame.OtherPlayer().Ships.filter(ship => {
+				return ship.Sunk;
+			}).map((ship) => {
+				return ship.Name.toUpperCase();
+			});			
 
 			this.selected.x = -1;
 			this.selected.y = -1;	
 			this.phase = GamePhase.WAITING;		
 		});
 
+		App.component.$on('sunk', function(msg:string) {
+			this.msg = 'YOU SUNK MY ' + msg.toUpperCase() + ' !';
+		});
+
 		App.component.$on('nextTurn', function() {
+			this.msg = '';
 			self.mGame.NextTurn();
 			this.turn = self.mGame.CurrentTurn;
+			this.kills = self.mGame.OtherPlayer().Ships.filter(ship => {
+				return ship.Sunk;
+			}).map((ship) => {
+				return ship.Name.toUpperCase();
+			});
+
 			this.hits = self.mGame.Hits[this.turn];
 			this.misses = self.mGame.Misses[this.turn];			
 			this.phase = GamePhase.MAIN;			
+		});
+
+		App.component.$on('newGame', function() {
+			// Clear all Vue-bound data and re-start game
+			self.init();
+			this.turn = self.mGame.CurrentTurn;
+			this.selected.x = -1;
+			this.selected.y = -1;			
+			this.hits = [];
+			this.misses = [];			
+			this.kills = [];
+			this.phase = GamePhase.MAIN;
 		});
 	}
 	public static data = {
@@ -66,8 +98,10 @@ class App {
 		selected: { x: -1, y: -1 },
 		hits: [],
 		misses: [],
-		phase: 0,
-		turn: 0
+		phase: GamePhase.START,
+		turn: 0,
+		msg: '',
+		kills: []
 	}
 	private init() {
 		this.mGame = new Game();

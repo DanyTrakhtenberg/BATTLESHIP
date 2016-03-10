@@ -5,7 +5,6 @@ class Tile {
 
 	public static computed: any = {
 		isSelected: function() {
-			// return this.selected === this.coord.x + ',' + this.coord.y;
 			return this.selected.x === this.coord.x && this.selected.y === this.coord.y;
 		},
 		isHit: function() {
@@ -27,7 +26,6 @@ class Tile {
 			return result;
 		},
 		message: function() {
-			console.log('?');
 			if (this.hit)
 				return 'HIT!'
 			if (this.miss)
