@@ -1,6 +1,8 @@
 # BATTLESHIP
 
-To build: npm run build
+To build: npm install
+
+npm run build
 
 Then load up index.html in your browser, or enter the command 'python -m SimpleHTTPServer' in the project directory, then navigate to http://localhost:8000.
 
