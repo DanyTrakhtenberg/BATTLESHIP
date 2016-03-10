@@ -17,6 +17,7 @@
 ///<reference path="components/tile.ts" />
 ///<reference path="components/hud.ts" />
 ///<reference path="components/startscreen.ts" />
+///<reference path="components/gameover.ts" />
 
 class App {
 	private mGame: Game;

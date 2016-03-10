@@ -8,7 +8,6 @@ class StartScreen {
     '</div>';
     public static methods:any = {
         start: function() {
-            console.log('lol');
             this.$dispatch('newGame','');
         }
     }

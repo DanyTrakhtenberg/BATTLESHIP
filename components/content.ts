@@ -7,6 +7,7 @@ class Content {
 	'<div class="content">' +
 	'<board v-if="main || waiting" :phase="phase" :hits="hits" :misses="misses" :selected="selected"></board>' +
 	'<startscreen v-if="start"></startscreen>' +
+	'<gameover v-if="end" :phase="phase" :turn="turn"></gameover>' +
 	'</div>' +
 	'</div>' +	
 	'<div class="footer">BATTLESHIP</div>';
@@ -21,19 +22,15 @@ class Content {
 		},
 		waiting: function() {
 			return this.phase === GamePhase.WAITING;
-		}
-	}
-
-	public static data:any = function(){
-		return {
-			curPlayer: 0
+		},
+		end: function() {
+			return this.phase === GamePhase.END;
 		}
 	}
 
 	public static config = {
 		template: Content.template,
 		props: Content.props,
-		data: Content.data,
 		computed: Content.computed
 	};
 }

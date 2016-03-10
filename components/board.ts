@@ -10,20 +10,15 @@ class Board {
 	};
 
 	public static computed:any = {
-		numb: function() {
-			return 10;
-		},
 		rows: function() {
 			var result = [];
-			console.log(this.size);
 			for (var i = 0; i < this.size; i++) {
 				var inner = [];
 				for (var j = 0; j < this.size; j++) {
-					inner.push([{ x: i, y: j }]);
+					inner.push([{ x: i+1, y: j+1 }]);
 				}
 				result.push(inner);
 			}
-			console.log(result);
 			return result;
 		},
 		size: function() {
