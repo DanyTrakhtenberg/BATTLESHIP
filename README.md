@@ -1,9 +1,15 @@
 # BATTLESHIP
 
-To build: npm install
+To run: 
+
+npm install
 
 npm run build
 
-Then load up index.html in your browser, or enter the command 'python -m SimpleHTTPServer' in the project directory, then navigate to http://localhost:8000.
+npm start
 
-This requires that Python 2.7 is installed and on your PATH.
+Then, the game should be running at http://localhost:5000
+
+
+
+
