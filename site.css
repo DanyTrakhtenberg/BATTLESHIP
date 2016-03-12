@@ -66,12 +66,12 @@ body {
 }
 
 .turn-title {
-    font-size: 1.5em;
     margin: 0;
     margin-bottom: 8px;
 }
 
 .buttons {
+    font-size: 1em;
     max-width: 50%;
     padding-top: 8px;
     width: auto;
