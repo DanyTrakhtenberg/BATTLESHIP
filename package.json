@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.13.4",
     "requirejs": "^2.1.22",
     "ts-loader": "^0.8.1",
     "typescript": "^1.8.7"
