@@ -93,7 +93,7 @@ body {
     margin: 8px;
     margin-top: 20px;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.8em;
     text-decoration: underline;
 }
 
@@ -125,6 +125,7 @@ body {
 }
 
 .hud-message {
+    font-size: 1em;
     display: inline-block;
 }
 
