@@ -69,7 +69,7 @@ class Game {
 		this.mPhase = phase;
 	}	
 
-	public Fire(coord:Coordinate):boolean{
+	public Fire(coord:Coordinate):void{
 		if (coord.x === -1 && coord.y === -1)
 			return;
 

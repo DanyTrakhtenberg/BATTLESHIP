@@ -1,17 +1,22 @@
 class Hud {
 	public static template =
 	'<div class="hud">'+
-	'<h3 class="hud-item turn-title">PLAYER {{turn + 1}}</h1>' +
-	'<div class="buttons hud-item">' +
-	'<a v-show="!waiting && selectionMade" v-on:click="fire" class="blink_me pure-button pure-button-primary" href="#">FIRE</a>' +
-	'<a v-show="waiting" v-on:click="nextTurn" class="pure-button pure-button-primary" href="#">NEXT TURN</a>' +	
-
-	'</div>' +	
-	'<div class="kill-list">' +
-	'<p class="destroyed">TARGETS DESTROYED:</p>' +
-	'<p v-for="kill in kills">{{kill}}</p>' +
-	'</div>' +
-	'<h3 class="hud-message">{{ msg }}</h3>' +	
+	'<div class="row">'+
+    	'<div class="buttons hud-item">' +
+        	'<h3 class="turn-title">PLAYER {{turn + 1}}</h1>' +	
+        	'<a v-show="!waiting && selectionMade" v-on:click="fire" class="blink_me pure-button pure-button-primary" href="#">FIRE</a>' +
+        	'<a v-show="waiting" v-on:click="nextTurn" class="pure-button pure-button-primary" href="#">NEXT TURN</a>' +	
+    	'</div>' +	
+    	'<div class="kill-list hud-item">' +
+        	'<p class="destroyed">TARGETS DESTROYED:</p>' +
+        	'<p v-for="kill in kills">{{kill}}</p>' +
+        '</div>' +
+    '</div>' + // end row
+    '<div class="row">' +
+    	'<div class="hud-item hud-message">' +
+        	'<h5>{{ msg }}</h5>' +	
+        '</div>' +
+    '</div>' + // end row
 	'</div>';
 
 	public static props = ['kills', 'games', 'selected', 'phase','turn','msg'];

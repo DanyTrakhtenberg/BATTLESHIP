@@ -24,6 +24,7 @@ class App {
 	private mCurrentGame: Game;
 	public static component: any;
 
+	public static STATUS_MESSAGE: string = "COMMUNICATIONS ONLINE";
 	public constructor() {
 		var self = this;		
 		this.init();
@@ -68,7 +69,7 @@ class App {
 		});
 
 		App.component.$on('nextTurn', function() {
-			this.msg = '';
+			this.msg = App.STATUS_MESSAGE;
 			self.mGame.NextTurn();
 			this.turn = self.mGame.CurrentTurn;
 			this.kills = self.mGame.OtherPlayer().Ships.filter(ship => {
@@ -91,6 +92,7 @@ class App {
 			this.hits = [];
 			this.misses = [];			
 			this.kills = [];
+			this.msg = App.STATUS_MESSAGE;
 			this.phase = GamePhase.MAIN;
 		});
 	}
@@ -101,7 +103,7 @@ class App {
 		misses: [],
 		phase: GamePhase.START,
 		turn: 0,
-		msg: '',
+		msg: App.STATUS_MESSAGE,
 		kills: []
 	}
 	private init() {
