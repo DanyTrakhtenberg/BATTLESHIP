@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
 //    "start": "tsc app.ts --target ES5 --outFile bundle.js",
-    "start": "tsc -p .",
+    "start": "tsc app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
