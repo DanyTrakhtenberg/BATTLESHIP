@@ -8,7 +8,7 @@ app.use(express.static(__dirname));
 // views is directory for all template files
 
 app.get('/', function(request, response) {
-  response.send('index.html'));
+  response.send('index.html');
 });
 
 app.listen(app.get('port'), function() {

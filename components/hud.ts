@@ -37,22 +37,12 @@ class Hud {
 			return this.selected.x !== -1 && this.selected.y !== -1;
 		}
 	}
-	public static watch: any = {
-		kills: function(val, old) {
-			console.log('kills: ');
-			console.log(val);
-		},
-		msg: function(val, old) {
-			console.log(val);
-		}
-	}
 
 	public static config = {
 		props: Hud.props,
 		template: Hud.template,
 		methods: Hud.methods,
 		computed: Hud.computed,
-		watch: Hud.watch
 	}
 }
 
