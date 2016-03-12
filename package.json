@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc app.ts --target ES5",
+    "start": "node index.js",
+    "build": "tsc app.ts --target ES5 --outFile bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
