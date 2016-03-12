@@ -69,18 +69,21 @@ class Game {
 		this.mPhase = phase;
 	}	
 
-	public Fire(coord:Coordinate):void{
+	public Fire(coord:Coordinate):boolean{
 		if (coord.x === -1 && coord.y === -1)
-			return;
+			return false;
 
 		if (this.OtherPlayer().ReceiveProjectile(coord)) {
 			this.mHits[this.mCurrentTurn].push(coord);
+			if (this.OtherPlayer().IsDead())
+				this.EndGame();			
+			return true;
 		}
 		else {
 			this.mMisses[this.mCurrentTurn].push(coord);			
+			return false;
 		}
-		if (this.OtherPlayer().IsDead())
- 			this.EndGame();
+
 	}
 
 	private EndGame(): void {

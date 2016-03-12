@@ -4,7 +4,7 @@ class Hud {
 	'<div class="row">'+
     	'<div class="buttons hud-item">' +
         	'<h3 class="turn-title">PLAYER {{turn + 1}}</h1>' +	
-        	'<a v-show="!waiting && selectionMade" v-on:click="fire" class="blink_me pure-button pure-button-primary" href="#">FIRE</a>' +
+        	'<a v-show="!waiting" v-on:click="fire" :disabled="!selectionMade" class="pure-button pure-button-primary" v-bind:class="{ \'blink_me\': selectionMade }" href="#">FIRE</a>' +
         	'<a v-show="waiting" v-on:click="nextTurn" class="pure-button pure-button-primary" href="#">NEXT TURN</a>' +	
     	'</div>' +	
     	'<div class="kill-list hud-item">' +
